@@ -1,250 +1,49 @@
-<header>
-
-    {{-- FOR DESKTOP MENU  --}}
-    <div class="main-nagivation-desktop container">
-        <div class="main-nagivation-desktop__wrapper--row row">
-            <div class="col-lg-2 main-nagivation-desktop__wrapper--logo">
-                <a href="{{ url('/') }}">
-                    <img src="{{ asset('public/images/header/logo.jpg') }}" alt="GNF logo">
-                </a>
-            </div>
-            <div class="col-lg-8 main-nagivation-desktop__wrapper--menu">
-                <nav class="navbar-bar">
-                    <ul class="navbar-bar__wrapper">
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
-                        </li> --}}
-                        <li class="nav-item dropdown mm-menu">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" {{--data-toggle="dropdown"--}}>
-                                Our Research
-                            </a>
-                            <div class="dropdown-menu mm-menu">
-                                <ul class="sub-menu mega-menu">
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>1</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>2</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>3</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown mm-menu">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" {{--data-toggle="dropdown"--}}>
-                                Products
-                            </a>
-                            <div class="dropdown-menu mm-menu">
-                                <ul class="sub-menu mega-menu">
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>1</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>2</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>3</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Products</a>
-                        </li>
-                        <li class="nav-item dropdown mm-menu">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" {{--data-toggle="dropdown"--}}>
-                                About Us
-                            </a>
-                            <div class="dropdown-menu mm-menu">
-                                <ul class="sub-menu mega-menu">
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>1</span>
-                                        </a>
-                                    </li>
-                                    {{-- <li>
-                                        <a class="nav-link" href="{{ url('contact-us') }}">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>Contact Us</span>
-                                        </a>
-                                    </li> --}}
-                                    <li>
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>2</span>
-                                        </a>
-                                    </li>
-                                    
-                                    {{-- <li>
-                                        <a class="nav-link" href="{{ url('gallery') }}">
-                                            <div class="img-holder"><img src="{{ asset('public/images/mm-img.jpg') }}" alt="Mega Menu Image"></div>
-                                            <span>Gallery</span>
-                                        </a>
-                                    </li> --}}
-                                    
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Contact Us</a>
-                        </li>                        
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-2 main-nagivation-desktop__wrapper--menu-secondary text-right">
-                <div class="nav-secondary">
-                    <ul>
-                        <li><a href="#" class="btn--search"><i class="fas fa-search"></i></a></li>
-                        <li><a href="//www.novartis.com/" target="_blank"><i class="fas fa-phone text-white"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- ending of row  -->
-        </div>
-        <!-- ending of container  -->
-    </div>
-
-    <div class="search-wrap">
-        <form  action="{{url('search')}}">
-            <label for="search-input"></label>
-            <input type="text" id="search-input" placeholder="Search..." name="keywords">
-            <button type="submit" class="btn btn--primary">submit</button>
-            <span class="close">X</span>
-        </form>
-    </div>
-
-
-    {{-- FOR MOBILE MENU  --}}
-    <nav class="mobile navbar navbar-expand-xl navbar-light" id="main_navbar">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('public/images/header/logo.jpg') }}" alt="GNF logo">
+<!-- Desktop Header -->
+<header class="g-padding web-header">
+    <nav class="wrapper">
+        <a href="index.html" class="logo">
+            <img src="{{ asset('public/redesign/logo.svg') }}" alt="Guevara Web Graphics Studio">
         </a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <!-- <span class="navbar-toggler-icon"></span> -->
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
-                </li>   
+        <div class="nav--links">   
 
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{url('our-research')}}" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Our Research
+            <ul>
+                <li><a href="index.html" class="a-nav-link">Home</a></li>
+                <li><a href="about.html" class="a-nav-link">About me</a></li>
+                <li><a href="podcast.html" class="a-nav-link">Podcast</a></li>
+                <li><a href="#" class="a-works a-nav-link">
+                        Work 
+                        <svg width="9" height="6" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.243 5.656L0 1.414L1.415 0L4.243 2.828L7.071 0L8.486 1.414L4.243 5.656Z" fill="currentColor"/>
+                        </svg>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">1</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">2</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">3</a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Our Enabling Technology
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">1</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">2</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Products</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        About Us
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">1</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0)">2</a>
-                        </li>
-                    </ul>
-                </li>
+                    <div class="extralinks">
+                        <a href="portfolio.html" class="a-mnav-link">Portfolio</a>
+                        <a href="blogs.html" class="a-mnav-link">Case Studies</a>
+                        <a href="testimonials.html" class="a-mnav-link">Testimonials</a>
+                    </div>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Contact Us</a>
                 </li>
             </ul>
-            <div class="search-wrap text-center">
-                <form  action="{{url('search')}}">
-                    <label for="search-input"></label>
-                    <input type="text" id="search-input" placeholder="Search..." name="keywords">
-                    <button type="submit" class="btn btn--primary">submit</button>
-                    {{-- <span class="close">X</span> --}}
-                </form>
-            </div>
+            <a href="contact.html" class="nav--btn">
+                Get In Touch
+                <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.82287e-06 9C6.82287e-06 4.0293 4.02931 0 9 0C13.9707 0 18 4.0293 18 9C18 13.9707 13.9707 18 9 18H6.82287e-06L2.63611 15.3639C1.79918 14.5291 1.13545 13.5371 0.683068 12.445C0.230682 11.3529 -0.00145088 10.1821 6.82287e-06 9ZM4.34521 16.2H9C10.424 16.2 11.8161 15.7777 13.0001 14.9866C14.1841 14.1954 15.107 13.0709 15.6519 11.7553C16.1969 10.4397 16.3395 8.99201 16.0617 7.59535C15.7838 6.19869 15.0981 4.91577 14.0912 3.90883C13.0842 2.90189 11.8013 2.21616 10.4047 1.93835C9.00799 1.66053 7.56031 1.80312 6.24468 2.34807C4.92906 2.89302 3.80457 3.81586 3.01342 4.99989C2.22228 6.18393 1.80001 7.57597 1.80001 9C1.80001 10.9368 2.56591 12.7485 3.90871 14.0913L5.1813 15.3639L4.34521 16.2ZM5.4 9.9H12.6C12.6 10.8548 12.2207 11.7705 11.5456 12.4456C10.8705 13.1207 9.95478 13.5 9 13.5C8.04522 13.5 7.12955 13.1207 6.45442 12.4456C5.77929 11.7705 5.4 10.8548 5.4 9.9Z" fill="currentColor"/>
+                </svg>
+            </a>
+
         </div>
+
     </nav>
-
-
 </header>
+<!-- Mobile Header -->
+<header class="g-padding web-header-mob">
+    <a href="index.html" class="logo-m">
+        <img src="{{ asset('public/redesign/logo.svg') }}" alt="Guevara Web Graphics Studio">
+    </a>
 
-
-<section class="search-box">
-    <div class="search-box__button"></div>
-    <div class="search-box__wrapper container">
-        <div class="row">
-            <div class="col-md-12">
-                <form class="search-form" action="{{ url('/') }}" method="GET">
-                    <div class="form-group">
-                        <a class="nav-link " type="submit" href="javascript:void(0)">
-                            <i class="fa fa-search"></i>
-                        </a>
-                        <input type="text" name="keyword" id="keyword" placeholder="Search Keyword">
-
-                        {{-- <input type="text" name="keyword" id="keyword" placeholder="Search Keyword"
-                                   value="{{ !empty($search_params) && isset($search_params['keyword']) ? $search_params['keyword'] : '' }}"
-                        spellcheck="false"> --}}
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+    <button id="menu-mob" class="hamburger-m">
+        <div></div>
+    </button>
+</header>
