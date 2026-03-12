@@ -40,5 +40,11 @@ class DatabaseSeeder extends Seeder
         
         // CMS Field Types (must be seeded before section templates)
         $this->call(FieldTypesSeeder::class);
+
+        // Home page dynamic
+        $this->call([
+            HomePageHeroSection::class,
+        ]);
+        
     }
 }

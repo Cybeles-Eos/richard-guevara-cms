@@ -6,6 +6,8 @@
         {{-- need to be updated to live slugs or by page type --}}
         @if ($page['slug'] == 'home')
             @include('front.pages.custom-page.home')
+        @elseif ($page['slug'] == 'about-us')
+            @include('front.pages.custom-page.about-us')
         @elseif ($page['slug'] == 'contact-us')
             @include('front.pages.custom-page.contact-us')
         @else

@@ -277,3 +277,104 @@ function clearSectionCache($pageId = null) {
         $repository->clearAllCache();
     }
 }
+
+
+/**
+ * Get section data for a specific page, optionally filtered by section alias
+ * Returns processed array data ready for views
+ * 
+ * @param int $pageId The page ID
+ * @param string|null $sectionAlias Optional section alias to filter
+ * @return array Processed section data
+ */
+function getPageSectionData($pageId, $sectionAlias = null) {
+    $repository = new \App\Repositories\SectionRepository();
+    
+    // Single section request
+    if ($sectionAlias) {
+        $section = $repository->getSectionByName($sectionAlias, $pageId);
+        if (!$section) return [];
+        return processSectionToArray($section);
+    }
+    
+    // All sections for page
+    $sections = $repository->getPageSections($pageId);
+    $result = [];
+    
+    foreach ($sections as $section) {
+        $result[$section->alias] = processSectionToArray($section);
+    }
+    
+    return $result;
+}
+
+/**
+ * Process a section model into an array with decoded data
+ * Handles repeater sections and image field conversions
+ * 
+ * @param \App\Models\Section|null $section The section model
+ * @return array Processed section data
+ */
+function processSectionToArray($section) {
+    if (!$section) return [];
+    
+    // Handle repeater sections with data
+    if ($section->isRepeater && $section->data->isNotEmpty()) {
+        $items = [];
+        foreach ($section->data as $dataItem) {
+            $processed = [];
+            foreach ($dataItem->data as $key => $value) {
+                // Check if field is an image type
+                if ($section->template && isImageField($section->template, $key) && $value) {
+                    $processed[$key] = \App\Models\Attachment::find($value);
+                } else {
+                    $processed[$key] = $value;
+                }
+            }
+            $items[] = $processed;
+        }
+        return $items;
+    }
+    
+    // Handle non-repeater sections (template-based sections)
+    if ($section->value) {
+        $decoded = is_string($section->value) ? json_decode($section->value, true) : $section->value;
+        
+        // Process image fields for non-repeater sections too
+        if ($decoded && is_array($decoded) && $section->template) {
+            $processed = [];
+            foreach ($decoded as $key => $value) {
+                // Check if field is an image type
+                if (isImageField($section->template, $key) && $value) {
+                    $processed[$key] = \App\Models\Attachment::find($value);
+                } else {
+                    $processed[$key] = $value;
+                }
+            }
+            return $processed;
+        }
+        
+        return $decoded ?: [];
+    }
+    
+    return [];
+}
+
+
+/**
+ * Check if a field in a section template is an image type
+ * 
+ * @param \App\Models\SectionTemplate|null $template The section template
+ * @param string $fieldAlias The field alias to check
+ * @return bool True if field is an image type
+ */
+function isImageField($template, $fieldAlias) {
+    if (!$template || !$template->fields) return false;
+    
+    foreach ($template->fields as $field) {
+        if ($field->alias === $fieldAlias && $field->fieldType && $field->fieldType->component === 'image') {
+            return true;
+        }
+    }
+    return false;
+}

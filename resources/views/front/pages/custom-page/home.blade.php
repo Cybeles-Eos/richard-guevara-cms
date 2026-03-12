@@ -33,12 +33,46 @@
 @endpush
 <main class="main-content page--home">
     <section class="section--hero g-padding">
+        @php
+            $HomeHeroData = getPageSectionData($page->id, 'home-hero-section');
+        
+            $heroImage1 =
+                !empty($HomeHeroData['quote_image_1']) && is_object($HomeHeroData['quote_image_1'])
+                    ? $HomeHeroData['quote_image_1']->url
+                    : '';
+            $heroImage2 =
+                !empty($HomeHeroData['quote_image_2']) && is_object($HomeHeroData['quote_image_2'])
+                    ? $HomeHeroData['quote_image_2']->url
+                    : '';
+            $heroImage3 =
+                !empty($HomeHeroData['quote_image_3']) && is_object($HomeHeroData['quote_image_3'])
+                    ? $HomeHeroData['quote_image_3']->url
+                    : '';
+            $heroImage4 =
+                !empty($HomeHeroData['quote_image_4']) && is_object($HomeHeroData['quote_image_4'])
+                    ? $HomeHeroData['quote_image_4']->url
+                    : '';
+        @endphp
+        <script>
+            console.log(@json($HomeHeroData));
+            console.log($heroImage1);
+        </script>
+        {{-- 
+        @php 
+            $heroSectionData = getPageSectionData(1, 'home-hero');
+            $heroData = is_array($heroSectionData) && isset($heroSectionData[0]) ? $heroSectionData[0] : $heroSectionData;
+            
+            $mainImage = !empty($heroData['image']) && is_object($heroData['image']) ? $heroData['image']->url : '';
+        @endphp
+        <img src="{{ !empty($mainImage) ? $mainImage : asset('public/redesign-layout/images/hero-bot.png') }}" loading="lazy" decoding="async" alt="">
+        --}}
+        {{-- {{ section('Award Overview.data.first.award_emblem_1')->asAttachment()->url ?? asset('public/assets/images/awards-1.png')}} --}}
         <img src="{{ asset('public/redesign/Shape Grid.svg') }}" class="shero-bg" alt="bg-vec">
-        <h1>Designing Websites That <span>Command Attention</span></h1>
-        <p class="section--hero--label">Skip the waiting room. Get seen through mobile, online, or phone for urgent medical needs, common symptoms, and prescription refills without leaving home.</p>
+        <h1>{!! $HomeHeroData['headline'] ?? "Designing Websites That <span>Command Attention</span>" !!}</h1>
+        <p class="section--hero--label">{!! $HomeHeroData['description'] ?? "Skip the waiting room. Get seen through mobile, online, or phone for urgent medical needs, common symptoms, and prescription refills without leaving home." !!}</p>
         <div class="btns-con">
-            <a href="contact.html" class="btn--arrow">
-                Book Free Consultation
+            <a href="{{ url($HomeStepData['primary_cta_link'] ?? '/contact-us') }}" class="btn--arrow">
+                {!! $HomeHeroData['primary_cta_label'] ?? 'Book Free Consultation' !!}
                 <div>
                     <span>
                         <i class="fas fa-arrow-right"></i>
@@ -46,7 +80,7 @@
                     </span>
                 </div>
             </a>
-            <a href="#" class="btn btn--secondary">Request A Quote</a>
+            <a href="{{url($HomeHeroData['secondary_cta_link'] ?? '/contact-us' )}}" class="btn btn--secondary">{!! $HomeHeroData['secondary_cta_label'] ?? "Request A Quote" !!}</a>
         </div>
 
         <div class="section--hero--foo mt-4">
@@ -66,7 +100,7 @@
         </div>
 
         <div class="section--hero--banners">
-            <img src="{{ asset('public/redesign/banner-1.png') }}" loading="lazy" decoding="async" class="shero-banner-img" id="heroBanner" alt="Banner Image">
+            <img src="{{ asset(!empty($heroImage1) ? $heroImage1 : 'public/redesign/banner-1.png') }}" loading="lazy" decoding="async" class="shero-banner-img" id="heroBanner" alt="Banner Image">
         </div>
     </section>
     <section class="section--clients g-padding">
